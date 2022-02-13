@@ -1,0 +1,15 @@
+[Unit]
+Description=Telegram bot for some work
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=client
+WorkingDirectory=/home/client/telegram_bot/
+ExecStart=/home/client/telegram_bot/venv/bin/python3 /home/client/telegram_bot/app/main.py
+RestartSec=60
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

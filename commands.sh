@@ -1,0 +1,2 @@
+# Удалить служебные каталоги и файлы python
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
