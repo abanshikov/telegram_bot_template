@@ -11,8 +11,7 @@ async def bot_echo(message: types.Message):
     :param message:
     :return:
     """
-    await message.answer(f"Эхо без состояния."
-                         f"Сообщение:\n"
+    await message.answer(f"Простите, но я не знаю как обработать команду: \n"
                          f"{message.text}")
 
 
