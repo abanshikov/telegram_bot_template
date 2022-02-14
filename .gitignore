@@ -35,4 +35,5 @@ env.bak/
 venv.bak/
 **/*/*.log
 *.log
+.~lock*
 
