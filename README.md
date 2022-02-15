@@ -1,5 +1,6 @@
 # Telegram bot template
 
+Основан на шаблоне <https://github.com/Latand/aiogram-bot-template>
 Шаблон для создания проекта телеграм бота.
 
 
