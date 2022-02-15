@@ -7,7 +7,7 @@ from loader import dp
 @dp.message_handler(state=None)
 async def bot_echo(message: types.Message):
     """
-    Эхо хендлер, куда летят текстовые сообщения без указанного состояния
+    Эхо хендлер, куда летят текстовые сообщения без указанного состояния.
     :param message:
     :return:
     """
