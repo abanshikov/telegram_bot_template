@@ -1,4 +1,4 @@
-import logger
+import logging
 
 
 SAVE_FILE = False
