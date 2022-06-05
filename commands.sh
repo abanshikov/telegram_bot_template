@@ -10,18 +10,13 @@ else
 fi
 DISTDIR=$PWD/dist/
 
-# исключаемые каталоги и файлы
-exclude_dir_1='.idea'
-exclude_dir_2='.git'
-exclude_dir_3='references'
-exclude_dir_4='venv'
-exclude_dir_5='__pycache__'
-exclude_dir_6='dist'
-exclude_file_1='.gitignore'
-exclude_file_2='LICENSE'
-exclude_file_3='README.md'
-exclude_file_4='commands.sh'
-exclude_file_5='history.log'
+EXCLUDE=(".idea" ".git"  "references" "venv" "__pycache__" "dist" ".gitignore"
+         "LICENSE" "README.md" "commands.sh" "history.log" "example*.*"
+         "tmp*.*" "temp*.*")
+for i in "${!EXCLUDE[@]}"
+do
+  EXCLUDE[i]="--exclude=${EXCLUDE[i]}"
+done
 
 
 # -------------------------------------------------------------------
@@ -46,14 +41,7 @@ then
     done
     echo "Копирование проекта на сервер в каталог "$SERVERDIR
     ssh alex@$SERVERNAME "mkdir -p $SERVERDIR"
-    rsync   -azq \
-            --exclude=$exclude_dir_1 --exclude=$exclude_dir_2 \
-            --exclude=$exclude_dir_3 --exclude=$exclude_dir_4 \
-            --exclude=$exclude_dir_5 --exclude=$exclude_dir_6 \
-            --exclude=$exclude_file_1 --exclude=$exclude_file_2 \
-            --exclude=$exclude_file_3 --exclude=$exclude_file_4\
-            --exclude=$exclude_file_5 \
-            $PWD/ alex@$SERVERNAME:$SERVERDIR
+    rsync -azq "${EXCLUDE[@]}" $PWD/ alex@$SERVERNAME:$SERVERDIR
     echo -e "--------------------------------------------\n"
 else
     # Не копировать
@@ -69,14 +57,7 @@ then
     # Копировать
     echo "Копирование проекта в "$DISTDIR
     mkdir -p $DISTDIR
-    rsync   -azq \
-            --exclude=$exclude_dir_1 --exclude=$exclude_dir_2 \
-            --exclude=$exclude_dir_3 --exclude=$exclude_dir_4 \
-            --exclude=$exclude_dir_5 --exclude=$exclude_dir_6 \
-            --exclude=$exclude_file_1 --exclude=$exclude_file_2 \
-            --exclude=$exclude_file_3 --exclude=$exclude_file_4\
-            --exclude=$exclude_file_5 \
-            $PWD/ $DISTDIR
+    rsync -azq "${EXCLUDE[@]}" $PWD/ $DISTDIR
     echo -e "--------------------------------------------\n"
 else
     # Не копировать
